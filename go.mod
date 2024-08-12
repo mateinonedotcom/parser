@@ -1,4 +1,4 @@
-module mateinonedotcom/parser
+module github.com/mateinonedotcom/puzzle
 
 go 1.22
 

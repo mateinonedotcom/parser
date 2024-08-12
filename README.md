@@ -1,4 +1,4 @@
-# Parser
+# Puzzle
 
 This project analyzes historical chess games to create puzzles. It replays matches to identify key positions and endgame scenarios. These are then used to generate "Mate in One" challenges for practice or entertainment.
 

@@ -1,6 +1,6 @@
 package chess
 
 type Square struct {
-	File int `json:"file"`
-	Rank int `json:"rank"`
+	File string `json:"file"`
+	Rank string `json:"rank"`
 }

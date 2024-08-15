@@ -8,7 +8,7 @@ import (
 
 func toSquare(square external.Square) internal.Square {
 	return internal.Square{
-		File: int(square.File()),
-		Rank: int(square.Rank()),
+		File: square.File().String(),
+		Rank: square.Rank().String(),
 	}
 }

@@ -5,8 +5,5 @@ import (
 )
 
 type CheckmatePuzzle struct {
-	PieceSquares   []chess.PieceSquare `json:"pieceSquares"`
-	Turn           chess.Color         `json:"turn"`
-	ValidMoves     []chess.Move        `json:"validMoves"`
-	CheckmateMoves []chess.Move        `json:"checkmateMoves"`
+	Position []chess.TuplePieceSquareMoves `json:"position"`
 }

@@ -19,7 +19,7 @@ func TestReader(t *testing.T) {
 		puzzles = append(puzzles, puzzle)
 	}
 
-	if len(puzzles) != 47 {
+	if len(puzzles) != 33 {
 		t.Fatalf("expected 1 game, got %d", len(puzzles))
 	}
 }

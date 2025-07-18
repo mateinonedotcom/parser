@@ -17,20 +17,14 @@ func NewGame(game *notnil.Game) *Game {
 
 func (g *Game) ToCheckmatePuzzle() *puzzle.CheckmatePuzzle {
 	secondToLastPosition := secondToLastPosition(g.game)
-	checkmateMoves := checkmateMoves(secondToLastPosition)
-	if len(checkmateMoves) == 0 {
+	if !isWhiteTurn(secondToLastPosition) || !hasCheckmate(secondToLastPosition) {
 		return nil
 	}
 
-	squareMap := secondToLastPosition.Board().SquareMap()
-	turn := secondToLastPosition.Turn()
-	validMoves := validMoves(secondToLastPosition)
+	mapSquarePiece := secondToLastPosition.Board().SquareMap()
 
 	return &puzzle.CheckmatePuzzle{
-		PieceSquares:   toPieceSquares(squareMap),
-		Turn:           toColor(turn),
-		ValidMoves:     toMoves(validMoves),
-		CheckmateMoves: toMoves(checkmateMoves),
+		Position: toTuplePieceSquareMovesArray(mapSquarePiece, secondToLastPosition),
 	}
 }
 
@@ -39,18 +33,17 @@ func secondToLastPosition(game *notnil.Game) *notnil.Position {
 	return history[len(history)-1].PrePosition
 }
 
-func validMoves(position *notnil.Position) []*notnil.Move {
-	return position.ValidMoves()
+func isWhiteTurn(position *notnil.Position) bool {
+	return position.Turn() == notnil.White
 }
 
-func checkmateMoves(position *notnil.Position) []*notnil.Move {
-	checkmates := []*notnil.Move{}
+func hasCheckmate(position *notnil.Position) bool {
 	for _, move := range position.ValidMoves() {
 		position := position.Update(move)
 		if position.Status() == notnil.Checkmate {
-			checkmates = append(checkmates, move)
+			return true
 		}
 	}
 
-	return checkmates
+	return false
 }
